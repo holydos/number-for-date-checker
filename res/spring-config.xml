@@ -6,26 +6,32 @@
        <bean id="dataSource"
              class="org.springframework.jdbc.datasource.DriverManagerDataSource">
               <property name="driverClassName" value="org.h2.Driver" />
-              <property name="url" value="jdbc:h2:mem::DATE_CHECKER;DB_CLOSE_DELAY=-1" />
-              <property name="username" value="" />
+              <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS ccmc" />
+              <property name="username" value="sa" />
               <property name="password" value="" />
        </bean>
 
-    <bean id="hibernate4AnnotatedSessionFactory"
+    <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
         <property name="dataSource" ref="dataSource" />
+
         <property name="annotatedClasses">
             <list>
-                <value>main.java.vutichenko.checker.model.DatePojo</value>
+                <value>vutichenko.checker.model.Dates</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.current_session_context_class">thread</prop>
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
+    </bean>
+
+    <bean id="dateDao" class="vutichenko.checker.dao.DateDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
 </beans>

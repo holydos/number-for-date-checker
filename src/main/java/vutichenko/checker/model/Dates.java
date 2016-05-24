@@ -1,24 +1,24 @@
-package main.java.vutichenko.checker.model;
+package vutichenko.checker.model;
 
-import org.hibernate.annotations.Entity;
-import sun.util.calendar.BaseCalendar;
+import javax.persistence.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by vutichenko on 24.05.2016.
  */
 @Entity
-@Table(name = "DATES")
-public class DatePojo {
+@Table(name = "Dates")
+public class Dates {
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(name = "number")
     private int number;
-
-    private BaseCalendar.Date date;
+    @Column(name = "date")
+    private Date date;
 
     public int getId() {
         return id;
@@ -36,11 +36,11 @@ public class DatePojo {
         this.number = number;
     }
 
-    public BaseCalendar.Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(BaseCalendar.Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
