@@ -17,7 +17,6 @@ public class Checker {
         DateDao dao = context.getBean(DateDao.class);
         DatabaseDummyFiller.fillDatabaseWithRandomDummies(15, dao);
         final NumbCalculator calculator = context.getBean(NumbCalculator.class);
-        System.out.println(calculator.getToday().toString());
         System.out.println(calculator.calculateNumbersBeforeToday());
 
 

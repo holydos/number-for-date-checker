@@ -12,18 +12,11 @@ import java.util.List;
 public class NumbCalculator {
     @Autowired
     private DateDao dao;
-    private Date today;
-
-    public Date getToday() {
-        return today;
-    }
-
-    public void setToday(Date today) {
-        this.today = today;
-    }
+    @Autowired
+    private CurrentDateUtil dateUtil;
 
     public Integer calculateNumbersBeforeToday(){
-        final List<Dates> valuesBeforeDate = dao.getValuesBeforeDate(today);
+        final List<Dates> valuesBeforeDate = dao.getValuesBeforeDate(dateUtil.getToday());
         int result = 0;
         for (Dates dates : valuesBeforeDate) {
           result = result + dates.getNumber();

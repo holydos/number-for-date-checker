@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import vutichenko.checker.api.CurrentDateUtil;
 import vutichenko.checker.api.NumbCalculator;
 import vutichenko.checker.dao.DateDao;
 import vutichenko.checker.dao.DateDaoImpl;
@@ -46,9 +47,7 @@ public class AppConfig {
 
     @Bean
     NumbCalculator calculator(){
-        NumbCalculator numbCalculator = new NumbCalculator();
-        numbCalculator.setToday(new java.util.Date());
-        return numbCalculator;
+        return new NumbCalculator();
     }
 
     @Bean
@@ -56,6 +55,13 @@ public class AppConfig {
         DateDaoImpl dateDao = new DateDaoImpl();
         dateDao.setSessionFactory(s);
         return dateDao;
+    }
+
+    @Bean
+    public CurrentDateUtil currentDateUtil(){
+        CurrentDateUtil currentDateUtil = new CurrentDateUtil();
+        currentDateUtil.setToday(new java.util.Date());
+        return currentDateUtil;
     }
 
 }
