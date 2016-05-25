@@ -16,12 +16,11 @@ import static org.junit.Assert.assertEquals;
  * Created by vutichenko on 25.05.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-test-config.xml"})
+@ContextConfiguration(classes = TestAppConfig.class)
+//@ContextConfiguration(locations = {"classpath:spring-test-config.xml"})
 public class CheckerTest{
     @Autowired
     DateDao dateDao;
-    @Autowired
-    DatabaseDummyFiller filler;
     @Autowired
     NumbCalculator calculator;
 
