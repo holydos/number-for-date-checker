@@ -1,5 +1,6 @@
 package vutichenko.checker.api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import vutichenko.checker.dao.DateDao;
 import vutichenko.checker.model.Dates;
 
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by vutichenko on 24.05.2016.
  */
+@Component
 public class NumbCalculator {
     @Autowired
     private DateDao dao;

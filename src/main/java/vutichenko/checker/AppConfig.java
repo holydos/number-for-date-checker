@@ -2,6 +2,7 @@ package vutichenko.checker;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -19,6 +20,7 @@ import java.util.Properties;
  */
 
 @Configuration
+@ComponentScan
 public class AppConfig {
 
 
@@ -43,11 +45,6 @@ public class AppConfig {
         hibernateProperties.put("hibernate.hbm2ddl.auto","create");
         localSessionFactoryBean.setHibernateProperties(hibernateProperties);
         return localSessionFactoryBean;
-    }
-
-    @Bean
-    NumbCalculator calculator(){
-        return new NumbCalculator();
     }
 
     @Bean

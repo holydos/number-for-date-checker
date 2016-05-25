@@ -3,6 +3,7 @@ package vutichenko.checker;
 import org.hibernate.SessionFactory;
 import org.joda.time.LocalDate;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -20,7 +21,9 @@ import java.util.Properties;
  */
 
 @Configuration
+@ComponentScan
 public class TestAppConfig {
+
 
 
     @Bean
@@ -46,10 +49,10 @@ public class TestAppConfig {
         return localSessionFactoryBean;
     }
 
-    @Bean
+  /*  @Bean
     NumbCalculator calculator(){
         return new NumbCalculator();
-    }
+    }*/
 
     @Bean
     public DateDao dateDto(SessionFactory s) {
