@@ -8,7 +8,9 @@ import java.util.List;
  * Created by vutichenko on 24.05.2016.
  */
 public interface DateDao {
-    public void save(Dates p);
+    void save(Dates d);
 
-    public List<Dates> list();
+    List<Dates> list();
+
+    List<Dates> getValuesBeforeDate(java.util.Date date);
 }

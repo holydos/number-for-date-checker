@@ -1,7 +1,5 @@
 package vutichenko.checker.model;
 
-import javax.persistence.Entity;
-
 import javax.persistence.*;
 import java.util.Date;
 

@@ -6,18 +6,18 @@
 
     <context:component-scan base-package="vutichenko.checker"/>
     <context:annotation-config/>
-       <bean id="dataSource"
-             class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-              <property name="driverClassName" value="org.h2.Driver" />
-              <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS ccmc" />
-              <property name="username" value="sa" />
-              <property name="password" value="" />
-       </bean>
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS ccmc"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
 
         <property name="annotatedClasses">
             <list>
@@ -34,21 +34,19 @@
     </bean>
 
     <bean id="dateDao" class="vutichenko.checker.dao.DateDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="fastDateFormat" class="org.apache.commons.lang.time.FastDateFormat" factory-method="getInstance">
-        <constructor-arg value="yyyy/MM/dd"/>
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd"/>
     </bean>
 
     <bean id="calculator" class="vutichenko.checker.api.NumbCalculator">
         <property name="today" >
-            <bean id="today" class="java.util.Date" factory-bean="fastDateFormat" factory-method="format">
-                <constructor-arg>
-                    <bean class="java.util.Date"/>
-                </constructor-arg>
-            </bean>
+        <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="1980-01-01"/>             </bean>
         </property>
     </bean>
+
 
 </beans>

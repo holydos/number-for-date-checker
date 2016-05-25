@@ -1,15 +1,10 @@
 package vutichenko.checker;
 
-import vutichenko.checker.api.DatabaseDummyFiller;
-import vutichenko.checker.dao.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import vutichenko.checker.model.Dates;
-
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import vutichenko.checker.api.DatabaseDummyFiller;
+import vutichenko.checker.api.NumbCalculator;
+import vutichenko.checker.dao.DateDao;
 
 /**
  * Created by vutichenko on 24.05.2016.
@@ -17,14 +12,12 @@ import java.util.stream.Collectors;
 public class Checker {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        DateDao dateDao = context.getBean(DateDao.class);
-        DatabaseDummyFiller filler = context.getBean(DatabaseDummyFiller.class);
-        filler.fillDatabaseWithRandomDummies(50);
-        final List<Dates> list = dateDao.list();
-        List<Date>datesFromMeasurements = list.stream().map(Dates::getDate).collect(Collectors.toList());
+        DateDao dao = context.getBean(DateDao.class);
+        DatabaseDummyFiller.fillDatabaseWithRandomDummies(15, dao);
+        final NumbCalculator calculator = context.getBean(NumbCalculator.class);
+        System.out.println(calculator.getToday().toString());
+        System.out.println(calculator.calculateNumbersBeforeToday());
 
-        datesFromMeasurements.forEach(d->
-                System.out.println(d.getTime()));
 
     }
 }
